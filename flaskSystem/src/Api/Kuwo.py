@@ -273,6 +273,5 @@ class KwApi(BaseApi):
         url = f'''http://mobi.kuwo.cn/mobi.s?f=kuwo&q={self.__KuwoDES.base64_encrypt(willEnc)}'''
 
         res = self.getUrl(url)
-        print(res.text)
         link = res.json()["data"]["url"]#subString(res.text, "url=", "\r\n")
         return link
