@@ -269,8 +269,10 @@ class KwApi(BaseApi):
         Returns:
             直链地址
         """
-        willEnc = f'corp=kuwo&p2p=1&type=convert_url2&format=flac|mp3|aac&rid={mid}'
+        willEnc = f'user=f5d7c0872d4e0d45&android_id=f5d7c0872d4e0d45&prod=kwplayer_ar_5.1.0.0&corp=kuwo&newver=3&vipver=5.1.0.0&source=kwplayer_ar_5.1.0.0_B_jiakong_vh.apk&p2p=1&q36=44dc3941c5ac470c0667be0910001bc1670e&loginUid=459359271&loginSid=0&notrace=0&type=convert_url_with_sign&br=2000kflac&format=flac|mp3|aac&sig=0&priority=bitrate&loginUid=459359271&network=4G&loginSid=0&localUid=-&rid={mid}'
         url = f'''http://mobi.kuwo.cn/mobi.s?f=kuwo&q={self.__KuwoDES.base64_encrypt(willEnc)}'''
+
         res = self.getUrl(url)
-        link = subString(res.text, "url=", "\r\n")
+        print(res.text)
+        link = res.json()["data"]["url"]#subString(res.text, "url=", "\r\n")
         return link
